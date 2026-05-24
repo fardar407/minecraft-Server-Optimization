@@ -136,9 +136,18 @@
 - Windows:
   - ใช้ `auto_start.bat` เพื่อรันเซิร์ฟเวอร์และ restart อัตโนมัติเมื่อหยุด
   - ใช้ `backup_server.bat` เพื่อสำรองโลก, config, mods, plugins เข้าโฟลเดอร์ `backups`
+  - ใช้ `backup_rotate.bat` เพื่อสำรองเป็นไฟล์ `.zip` และเก็บเฉพาะ backup ล่าสุด 5 ชุด
+  - ใช้ `install_task_scheduler.bat` เพื่อติดตั้ง Task Scheduler ให้รัน `auto_start.bat` เมื่อบูต
+  - ใช้ `monitor_server.bat` เพื่อตรวจสอบพอร์ตเซิร์ฟเวอร์และ restart ถ้ายังไม่ online
+  - ใช้ `clean_modpack.bat` เพื่อย้ายไฟล์ `.disabled`, `.duplicate`, และ client-only mods ออกไป
+  - ใช้ `optimize_windows.bat` เพื่อสลับเป็น Power Plan แบบ High Performance
 - Ubuntu/Linux:
   - ใช้ `auto_start.sh` เพื่อรันเซิร์ฟเวอร์และ restart อัตโนมัติ
   - ใช้ `backup_server.sh` เพื่อสำรองโลก, config, mods, plugins เข้าโฟลเดอร์ `backups`
+  - ใช้ `backup_rotate.sh` เพื่อสำรองเป็นไฟล์ `.tar.gz` และเก็บเฉพาะ backup ล่าสุด 5 ชุด
+  - ใช้ `monitor_server.sh` เพื่อตรวจสอบพอร์ตเซิร์ฟเวอร์และ restart ถ้ายังไม่ online
+  - ใช้ `clean_modpack.sh` เพื่อย้ายไฟล์ `.disabled`, `.duplicate`, และ client-only mods ออกไป
+  - ใช้ `optimize_linux.sh` เพื่อตั้งค่า swappiness, fs.file-max, และ ulimit สำหรับ Minecraft
   - หากต้องการ systemd auto-start ให้ใช้ไฟล์ตัวอย่าง `minecraft.service`
     - คัดลอกไฟล์ไปไว้ที่ `/etc/systemd/system/minecraft.service`
     - ปรับ `User` และ `WorkingDirectory` ตามเครื่อง
