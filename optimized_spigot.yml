@@ -1,0 +1,51 @@
+settings:
+  save-player-data: true
+  bukkit-verbose: false
+  permissions-file: permissions.yml
+  update-folder: update
+  player-shuffle: 0
+  sample-count: 12
+  item-despawn-rate: 6000
+  merge-radius:
+    item: 4.0
+    exp: 3.0
+  arrow-despawn-rate: 600
+  allow-permanent-block-break-exploits: false
+  view-distance: 6
+  simulation-distance: 6
+  max-tick-time:
+    tile: 60000
+    entity: 60000
+  throttle: 0
+  log-villager-deaths: false
+  log-lit-redstone: false
+  save-console-history: true
+  world-container: .
+  sample-count: 12
+  disable-chunk-gc: false
+world-settings:
+  default:
+    mob-spawn-range: 4
+    entity-activation-range:
+      animals: 12
+      monsters: 12
+      raiders: 24
+      villagers: 16
+    merge-radius:
+      item: 4.0
+      exp: 3.0
+    chunk-gc: true
+    use-native-transport: true
+    optimize-explosions: true
+    max-tnt-ticks-per-tick: 50
+    max-entity-collisions: 2
+    max-block-ticks: 1000
+    item-despawn-rate: 6000
+    random-lightning: false
+    save-structure-info: false
+    spawn-limits:
+      monsters: 70
+      animals: 10
+      water-animals: 5
+      ambient: 5
+    hanging-tick-frequency: 100

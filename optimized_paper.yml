@@ -1,0 +1,60 @@
+# Optimized Paper settings for high player count, plugins, and modded performance
+settings:
+  allow-end: true
+  allow-nether: true
+  anti-xray:
+    enabled: false
+  broadcast-console-to-ops: true
+  bungeecord: false
+  connection-throttle: 4000
+  console-autocomplete: true
+  debug: false
+  deny-list: false
+  enforce-whitelist: false
+  filter-chat: false
+  function-permission-level: 2
+  iplists:
+    banned-ips: []
+    banned-players: []
+  max-players: 50
+  max-tick-time: 60000
+  motd: "Optimized Paper Server"
+  query-port: 25565
+  resource-pack-prompt: true
+  server-ip: ""
+  simulation-distance: 6
+  sync-chunk-writes: false
+  use-native-transport: true
+  view-distance: 6
+messages:
+  whitelist: "You are not whitelisted on this server."
+  unknown-command: "Unknown command. Type \"help\" for help."
+world-settings:
+  default:
+    allow-structures: true
+    max-entity-collisions: 2
+    mob-spawn-range: 4
+    random-lightning: false
+    seed: 0
+    use-native-transport: true
+    entity-activation-range:
+      animals: 12
+      monsters: 12
+      raiders: 24
+      villagers: 16
+    ticks-per:
+      animal-spawns: 400
+      autosave: 6000
+      chunk-unloads: 600
+      mob-spawns: 1
+    max-tnt-per-tick: 50
+    max-block-changes: 200
+    max-entity-collisions: 2
+    save-structure-info: false
+    use-async-chunk-requests: true
+    optimize-explosions: true
+    item-despawn-rate: 6000
+    max-block-ticks-per-tick: 1000
+    max-entity-collisions: 2
+    anti-xray:
+      enabled: false

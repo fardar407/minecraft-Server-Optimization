@@ -1,9 +1,9 @@
 #!/bin/bash
-# Minecraft Modded Server launcher for Ubuntu/Linux with optimized JVM flags
+# Optimized Paper/Purpur server launcher for Ubuntu/Linux with plugin and high-player support
 set -e
-JAR="modded.jar"
-XMS="10G"
-XMX="12G"
+JAR="paper.jar"
+XMS="8G"
+XMX="10G"
 PARALLEL_GC_THREADS="8"
 CONCURRENT_GC_THREADS="4"
 ACTIVE_PROCESSORS="8"
@@ -37,8 +37,6 @@ JVM_OPTS=(
   -XX:+OptimizeStringConcat
   -XX:+UseCompressedOops
   -XX:+UseFastAccessorMethods
-  -XX:+HeapDumpOnOutOfMemoryError
-  -XX:+HeapDumpPath=heapdump.hprof
 )
 if [ -n "$JAVA_OPTS_EXTRA" ]; then
   read -r -a EXTRA_OPTS <<< "$JAVA_OPTS_EXTRA"
@@ -47,9 +45,9 @@ fi
 
 if [ ! -f "$JAR" ]; then
   echo "ERROR: $JAR not found in this folder."
-  echo "Place your modded server jar here and update the file name if needed."
+  echo "Place your Paper or Purpur server jar here and rename it to $JAR or update this script."
   exit 1
 fi
 
-echo "Starting modded Minecraft server with Xms=${XMS} Xmx=${XMX} and ${ACTIVE_PROCESSORS} active processors..."
-exec java -Xms${XMS} -Xmx${XMX} "${JVM_OPTS[@]}" -jar "${JAR}" nogui
+echo "Running optimized server with Xms=${XMS} Xmx=${XMX} and ${ACTIVE_PROCESSORS} active processors..."
+exec java -Xms${XMS} -Xmx${XMX} "${JVM_OPTS[@]}" -jar "$JAR" nogui
