@@ -130,27 +130,37 @@
 - หากสเปคสูง ระบบจะตั้งค่า RAM และ thread ให้สูงขึ้นอัตโนมัติ
 - ถ้าอยากปรับเอง ให้แก้ค่าใน `server_settings.env`
 - มีตัวอย่างไฟล์ `server_settings.env.example` ให้ดู format
-- บน Linux ให้รัน `chmod +x detect_server_specs.sh modded_start.sh start.sh check_modpack.sh run_server.sh` ก่อนใช้งาน
+- มีตัวอย่างไฟล์ `alert_settings.env.example` ให้คัดลอกไปเป็น `alert_settings.env` แล้วตั้งค่า Slack/Email (Linux email alert จะใช้ Python3)
+- บน Linux ให้รัน `chmod +x detect_server_specs.sh modded_start.sh start.sh check_modpack.sh run_server.sh auto_start.sh monitor_tps.sh notify_alert.sh tps_report.sh` ก่อนใช้งาน
 
 ## Auto-start และ Backup
 - Windows:
-  - ใช้ `auto_start.bat` เพื่อรันเซิร์ฟเวอร์และ restart อัตโนมัติเมื่อหยุด
+  - ใช้ `auto_start.bat` เพื่อรันเซิร์ฟเวอร์และ restart อัตโนมัติเมื่อหยุด พร้อม throttle restart หากเกิด restart บ่อยเกินไป
   - ใช้ `backup_server.bat` เพื่อสำรองโลก, config, mods, plugins เข้าโฟลเดอร์ `backups`
   - ใช้ `backup_rotate.bat` เพื่อสำรองเป็นไฟล์ `.zip` และเก็บเฉพาะ backup ล่าสุด 5 ชุด
   - ใช้ `install_task_scheduler.bat` เพื่อติดตั้ง Task Scheduler ให้รัน `auto_start.bat` เมื่อบูต
+  - ใช้ `install_nssm_service.bat` เพื่อติดตั้ง Minecraft เป็น Windows Service ด้วย NSSM
   - ใช้ `monitor_server.bat` เพื่อตรวจสอบพอร์ตเซิร์ฟเวอร์และ restart ถ้ายังไม่ online
+  - ใช้ `monitor_tps.bat` เพื่อตรวจสอบ log TPS/lag, สร้างรายงาน TPS, และส่ง alert ผ่าน Slack/Email เมื่อมีปัญหา
+  - ใช้ `tps_report.bat` เพื่อสร้าง `monitor/tps_report.csv` และ `monitor/tps_report.html`
+  - ใช้ `notify_alert.bat` พร้อม `alert_settings.env` เพื่อตั้งค่าการแจ้งเตือน Slack/Email
   - ใช้ `clean_modpack.bat` เพื่อย้ายไฟล์ `.disabled`, `.duplicate`, และ client-only mods ออกไป
   - ใช้ `optimize_windows.bat` เพื่อสลับเป็น Power Plan แบบ High Performance
 - Ubuntu/Linux:
   - ใช้ `auto_start.sh` เพื่อรันเซิร์ฟเวอร์และ restart อัตโนมัติ
   - ใช้ `backup_server.sh` เพื่อสำรองโลก, config, mods, plugins เข้าโฟลเดอร์ `backups`
   - ใช้ `backup_rotate.sh` เพื่อสำรองเป็นไฟล์ `.tar.gz` และเก็บเฉพาะ backup ล่าสุด 5 ชุด
+  - ใช้ `schedule_backup_cron.sh` เพื่อติดตั้ง cron job ให้รัน backup อัตโนมัติทุกวัน 03:00
   - ใช้ `monitor_server.sh` เพื่อตรวจสอบพอร์ตเซิร์ฟเวอร์และ restart ถ้ายังไม่ online
+  - ใช้ `monitor_tps.sh` เพื่อตรวจสอบ log TPS/lag, สร้างรายงาน TPS, และส่ง alert ผ่าน Slack/Email เมื่อมีปัญหา
+  - ใช้ `tps_report.sh` เพื่อสร้าง `monitor/tps_report.csv` และ `monitor/tps_report.html`
+  - ใช้ `notify_alert.sh` พร้อม `alert_settings.env` เพื่อตั้งค่าการแจ้งเตือน Slack/Email
   - ใช้ `clean_modpack.sh` เพื่อย้ายไฟล์ `.disabled`, `.duplicate`, และ client-only mods ออกไป
   - ใช้ `optimize_linux.sh` เพื่อตั้งค่า swappiness, fs.file-max, และ ulimit สำหรับ Minecraft
   - หากต้องการ systemd auto-start ให้ใช้ไฟล์ตัวอย่าง `minecraft.service`
     - คัดลอกไฟล์ไปไว้ที่ `/etc/systemd/system/minecraft.service`
     - ปรับ `User` และ `WorkingDirectory` ตามเครื่อง
+    - ไฟล์ตัวอย่างมีการตั้งค่า restart throttling เพื่อป้องกัน restart loop ในระบบ
     - รัน `sudo systemctl daemon-reload && sudo systemctl enable minecraft.service && sudo systemctl start minecraft.service`
 
 ## ตัวอย่าง `server.properties` สำหรับ modded server
